@@ -48,6 +48,7 @@
     <Compile Include="Classes\Game.cs" />
     <Compile Include="Classes\EazyMenu.cs" />
     <Compile Include="Classes\HardMenu.cs" />
+    <Compile Include="Exceptions\NumberException.cs" />
     <Compile Include="Interfaces\IMenu.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -55,8 +56,6 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Exceptions\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -1,4 +1,5 @@
-﻿using Bricks.Interfaces;
+﻿using Bricks.Exceptions;
+using Bricks.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,7 +10,11 @@ namespace Bricks.Classes
 {
     class EazyMenu : IMenu
     {
+
         Game game;
+
+        public bool EndOfGame { get; set; }
+
         public EazyMenu(Game game)
         {
             this.game = game;
@@ -52,8 +57,8 @@ namespace Bricks.Classes
                 Console.Clear();
 
             }
-
             Console.WriteLine("Пошел нахуй");
+
         }
 
         bool Win(Brick[] bricks)
@@ -75,6 +80,8 @@ namespace Bricks.Classes
                     return false;
             }
 
+            EndOfGame = true;
+
             return true;
         }
 
@@ -85,6 +92,9 @@ namespace Bricks.Classes
 
             for(int i = 0; i < bricks.Length; i++)
                 field[i] = bricks[i].Symbol;
+
+            if (!Array.Exists(field, v => v == number))
+                throw new NumberException("Incorrect number!");
 
             int index_number = Array.IndexOf(field, number);
 

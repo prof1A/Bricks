@@ -1,4 +1,5 @@
-﻿ using System;
+﻿using Bricks.Classes;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,6 +9,7 @@ namespace Bricks.Interfaces
 {
     interface IMenu
     {
+        bool EndOfGame { get; set; }
         void GameProcess();
     }
 }
