@@ -6,13 +6,17 @@ namespace Bricks.Classes
     class InputNumber : ICommand
     {
         IMenu menu;
-        public InputNumber(IMenu menu)
+
+        string number;
+        public InputNumber(IMenu menu,string number)
         {
             this.menu = menu;
+
+            this.number = number;
         }
         public void Execute()
         {
-            throw new NotImplementedException();
+            menu.InputNumber(menu.Game.CurrentField.Bricks, number);
         }
         public void Undo()
         {

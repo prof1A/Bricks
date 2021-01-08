@@ -1,6 +1,5 @@
 ﻿using Bricks.Interfaces;
 using System;
-
 namespace Bricks.Classes
 {
     class BackToField : ICommand

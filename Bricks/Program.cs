@@ -8,9 +8,6 @@ namespace Bricks
     {
         static void Main(string[] args)
         {
-
-            IMenu[] menu = new IMenu[] { new EazyMenu(new Game()), new HardMenu(new Game()) };
-
             Console.WriteLine("Choise level of game");
 
             Console.WriteLine("1.Eazy");
@@ -23,17 +20,11 @@ namespace Bricks
 
             Console.Clear();
 
-            bool endOfGame = false;
+            Invoker invoker = new Invoker();
 
-            do
-            {
-                menu[choice -1].GameProcess();
+            invoker.SetCommand(new InputTheLevelOfGame(choice));
 
-                endOfGame = menu[choice - 1].EndOfGame;
-                    
-            } 
-            while(!endOfGame);
-
+            invoker.Run();
         }
     }
 }

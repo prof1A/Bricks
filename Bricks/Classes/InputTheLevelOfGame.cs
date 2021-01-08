@@ -5,15 +5,16 @@ namespace Bricks.Classes
 {
     class InputTheLevelOfGame : ICommand
     {
-        IMenu menu;
+        IMenu[] menu = new IMenu[] { new EazyMenu(new Game()), new HardMenu(new Game()) };
 
-        public InputTheLevelOfGame(IMenu menu)
+        int choice;
+        public InputTheLevelOfGame(int choice)
         {
-            this.menu = menu;
+            this.choice = choice;
         }
         public void Execute()
         {
-            
+            menu[choice - 1].GameProcess();
         }
         public void Undo()
         {

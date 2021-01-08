@@ -1,4 +1,5 @@
-﻿using Bricks.Interfaces;
+﻿using Bricks.Exceptions;
+using Bricks.Interfaces;
 using System;
 
 namespace Bricks.Classes
@@ -6,8 +7,6 @@ namespace Bricks.Classes
     class EazyMenu : IMenu
     {
         public Game Game { get; set; }
-        public bool EndOfGame { get; set; }
-
         public EazyMenu(Game game)
         {
             Game = game;
@@ -21,7 +20,7 @@ namespace Bricks.Classes
 
                 Console.Write(Game.CurrentField.Bricks[i] + " ");
             }
-            Console.WriteLine();
+            Console.WriteLine("\n\n");
         }
         public void GameProcess()
         {
@@ -49,15 +48,18 @@ namespace Bricks.Classes
 
                     string number = Console.ReadLine();
 
-                    InputNumber(Game.CurrentField.Bricks, number);
+                    Invoker invoker = new Invoker();
 
-                    Brick brick = new Brick(number);
+                    invoker.SetCommand(new InputNumber(this, number));
+
+                    invoker.Run();
 
                     Console.Clear();
 
                 }
+
+                Console.WriteLine("Победа!");
             }
-            Console.WriteLine("Пошел нахуй");
         }
 
         bool Win(Brick[] bricks)
@@ -78,8 +80,6 @@ namespace Bricks.Classes
                 if (bricks[i].Symbol != new_field[i])
                     return false;
             }
-
-            EndOfGame = true;
 
             return true;
         }

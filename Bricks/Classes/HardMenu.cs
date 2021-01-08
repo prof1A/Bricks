@@ -6,7 +6,6 @@ namespace Bricks.Classes
     class HardMenu : IMenu
     {
         public Game Game { get; set; }
-        public bool EndOfGame { get; set; }
 
         int repeat = 0;
 
@@ -47,7 +46,9 @@ namespace Bricks.Classes
                 if (repeat == value)
                 {
                     Game.CreateField(height, width);
+
                     repeat = 0;
+
                     value = random.Next(1, 10);
                 }
 
@@ -57,16 +58,18 @@ namespace Bricks.Classes
 
                 string number = Console.ReadLine();
 
-                InputNumber(Game.CurrentField.Bricks, number);
+                Invoker invoker = new Invoker();
+
+                invoker.SetCommand(new InputNumber(this, number));
+
+                invoker.Run();
 
                 repeat++;
 
                 Console.Clear();
-
             }
 
-            Console.WriteLine("Пошел нахуй");
-
+            Console.WriteLine("Победа!");
         }
 
         bool Win(Brick[] bricks)
@@ -87,8 +90,6 @@ namespace Bricks.Classes
                 if (bricks[i].Symbol != new_field[i])
                     return false;
             }
-            
-            EndOfGame = true;
 
             return true;
         }
