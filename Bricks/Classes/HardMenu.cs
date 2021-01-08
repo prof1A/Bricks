@@ -1,34 +1,28 @@
-﻿using Bricks.Exceptions;
-using Bricks.Interfaces;
+﻿using Bricks.Interfaces;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Bricks.Classes
 {
     class HardMenu : IMenu
     {
-        Game game;
+        public Game Game { get; set; }
+        public bool EndOfGame { get; set; }
 
         int repeat = 0;
 
         Random random = new Random();
 
-        public bool EndOfGame { get; set; }
-
         public HardMenu(Game game)
         {
-            this.game = game;
+            Game = game;
         }
         void ShowField()
         {
-            for (int i = 0; i < game.CurrentField.Bricks.Length; i++)
+            for (int i = 0; i < Game.CurrentField.Bricks.Length; i++)
             {
-                if (i % game.CurrentField.Width == 0 & i != 0)
+                if (i % Game.CurrentField.Width == 0 & i != 0)
                     Console.WriteLine();
-                Console.Write(game.CurrentField.Bricks[i] + " ");
+                Console.Write(Game.CurrentField.Bricks[i] + " ");
             }
             Console.WriteLine("\n\n");
         }
@@ -44,15 +38,15 @@ namespace Bricks.Classes
 
             int width = Convert.ToInt32(Console.ReadLine());
 
-            game.CreateField(height, width);
+            Game.CreateField(height, width);
 
             Console.Clear();
 
-            while (!Win(game.CurrentField.Bricks))
+            while (!Win(Game.CurrentField.Bricks))
             {
                 if (repeat == value)
                 {
-                    game.CreateField(height, width);
+                    Game.CreateField(height, width);
                     repeat = 0;
                     value = random.Next(1, 10);
                 }
@@ -63,7 +57,7 @@ namespace Bricks.Classes
 
                 string number = Console.ReadLine();
 
-                InputNumber(game.CurrentField.Bricks, number);
+                InputNumber(Game.CurrentField.Bricks, number);
 
                 repeat++;
 
@@ -99,7 +93,7 @@ namespace Bricks.Classes
             return true;
         }
 
-        void InputNumber(Brick[] bricks, string number)
+        public void InputNumber(Brick[] bricks, string number)
         {
             
             string[] field = new string[bricks.Length];
@@ -108,7 +102,9 @@ namespace Bricks.Classes
                 field[i] = bricks[i].Symbol;
 
             if (!Array.Exists(field, v => v == number))
-                throw new NumberException("Incorrect number!");
+            {
+               
+            }
             else
             {
                 int index_number = Array.IndexOf(field, number);
@@ -117,9 +113,9 @@ namespace Bricks.Classes
 
                 string temp = null;
 
-                if ((index_star + 1) % game.CurrentField.Width == 1)
+                if ((index_star + 1) % Game.CurrentField.Width == 1)
                 {
-                    bool b = (index_number == index_star + 1 || index_number == index_star + game.CurrentField.Width || index_number == index_star - game.CurrentField.Width);
+                    bool b = (index_number == index_star + 1 || index_number == index_star + Game.CurrentField.Width || index_number == index_star - Game.CurrentField.Width);
                     if (b)
                     {
                         temp = field[index_number];
@@ -129,9 +125,9 @@ namespace Bricks.Classes
                         field[index_star] = temp;
                     }
                 }
-                else if ((index_star + 1) % game.CurrentField.Width == 0)
+                else if ((index_star + 1) % Game.CurrentField.Width == 0)
                 {
-                    bool b = (index_number == index_star - 1 || index_number == index_star + game.CurrentField.Width || index_number == index_star - game.CurrentField.Width);
+                    bool b = (index_number == index_star - 1 || index_number == index_star + Game.CurrentField.Width || index_number == index_star - Game.CurrentField.Width);
                     if (b)
                     {
                         temp = field[index_number];
@@ -141,7 +137,7 @@ namespace Bricks.Classes
                         field[index_star] = temp;
                     }
                 }
-                else if (index_number == index_star - game.CurrentField.Width || index_number == index_star + game.CurrentField.Width || index_number == index_star - 1 || index_number == index_star + 1)
+                else if (index_number == index_star - Game.CurrentField.Width || index_number == index_star + Game.CurrentField.Width || index_number == index_star - 1 || index_number == index_star + 1)
                 {
                     temp = field[index_number];
 
@@ -150,12 +146,12 @@ namespace Bricks.Classes
                     field[index_star] = temp;
                 }
 
-                game.CurrentField.Bricks = null;
+                Game.CurrentField.Bricks = null;
 
-                game.CurrentField.Bricks = new Brick[field.Length];
+                Game.CurrentField.Bricks = new Brick[field.Length];
 
                 for (int i = 0; i < field.Length; i++)
-                    game.CurrentField.Bricks[i] = new Brick(field[i]);
+                    Game.CurrentField.Bricks[i] = new Brick(field[i]);
             }
         }
     }

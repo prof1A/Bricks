@@ -1,9 +1,4 @@
 ﻿using Bricks.Classes;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Bricks.Interfaces
 {
@@ -11,5 +6,7 @@ namespace Bricks.Interfaces
     {
         bool EndOfGame { get; set; }
         void GameProcess();
+        void InputNumber(Brick[] bricks, string number);
+        Game Game { get; set; }
     }
 }

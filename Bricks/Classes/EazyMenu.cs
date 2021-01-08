@@ -1,32 +1,25 @@
-﻿using Bricks.Exceptions;
-using Bricks.Interfaces;
+﻿using Bricks.Interfaces;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Bricks.Classes
 {
     class EazyMenu : IMenu
     {
-
-        Game game;
-
+        public Game Game { get; set; }
         public bool EndOfGame { get; set; }
 
         public EazyMenu(Game game)
         {
-            this.game = game;
+            Game = game;
         }
         void ShowField()
         {
-            for (int i = 0; i < game.CurrentField.Bricks.Length; i++)
+            for (int i = 0; i < Game.CurrentField.Bricks.Length; i++)
             {
-                if (i % game.CurrentField.Width == 0 & i != 0)
+                if (i % Game.CurrentField.Width == 0 & i != 0)
                     Console.WriteLine();
 
-                Console.Write(game.CurrentField.Bricks[i] + " ");
+                Console.Write(Game.CurrentField.Bricks[i] + " ");
             }
             Console.WriteLine();
         }
@@ -40,25 +33,31 @@ namespace Bricks.Classes
 
             int width = Convert.ToInt32(Console.ReadLine());
 
-            game.CreateField(height, width);
+            Game.CreateField(height, width);
 
             Console.Clear();
 
-            while (!Win(game.CurrentField.Bricks))
-            {
+            if (Win(Game.CurrentField.Bricks))
                 ShowField();
+            else
+            {
+                while (!Win(Game.CurrentField.Bricks))
+                {
+                    ShowField();
 
-                Console.Write("Input of number:");
+                    Console.Write("Input of number:");
 
-                string number = Console.ReadLine();
+                    string number = Console.ReadLine();
 
-                InputNumber(game.CurrentField.Bricks, number);
+                    InputNumber(Game.CurrentField.Bricks, number);
 
-                Console.Clear();
+                    Brick brick = new Brick(number);
 
+                    Console.Clear();
+
+                }
             }
             Console.WriteLine("Пошел нахуй");
-
         }
 
         bool Win(Brick[] bricks)
@@ -85,7 +84,7 @@ namespace Bricks.Classes
             return true;
         }
 
-        void InputNumber(Brick[] bricks, string number)
+        public void InputNumber(Brick[] bricks, string number)
         {
 
             string[] field = new string[bricks.Length];
@@ -94,18 +93,42 @@ namespace Bricks.Classes
                 field[i] = bricks[i].Symbol;
 
             if (!Array.Exists(field, v => v == number))
-                throw new NumberException("Incorrect number!");
-
-            int index_number = Array.IndexOf(field, number);
-
-            int index_star = Array.IndexOf(field, "*");
-
-            string temp = null;
-
-            if ((index_star + 1) % game.CurrentField.Width == 1)
             {
-                bool b = (index_number == index_star + 1 || index_number == index_star + game.CurrentField.Width || index_number == index_star - game.CurrentField.Width);
-                if (b)
+
+            }
+            else
+            {
+                int index_number = Array.IndexOf(field, number);
+
+                int index_star = Array.IndexOf(field, "*");
+
+                string temp = null;
+
+                if ((index_star + 1) % Game.CurrentField.Width == 1)
+                {
+                    bool b = (index_number == index_star + 1 || index_number == index_star + Game.CurrentField.Width || index_number == index_star - Game.CurrentField.Width);
+                    if (b)
+                    {
+                        temp = field[index_number];
+
+                        field[index_number] = field[index_star];
+
+                        field[index_star] = temp;
+                    }
+                }
+                else if ((index_star + 1) % Game.CurrentField.Width == 0)
+                {
+                    bool b = (index_number == index_star - 1 || index_number == index_star + Game.CurrentField.Width || index_number == index_star - Game.CurrentField.Width);
+                    if (b)
+                    {
+                        temp = field[index_number];
+
+                        field[index_number] = field[index_star];
+
+                        field[index_star] = temp;
+                    }
+                }
+                else if (index_number == index_star - Game.CurrentField.Width || index_number == index_star + Game.CurrentField.Width || index_number == index_star - 1 || index_number == index_star + 1)
                 {
                     temp = field[index_number];
 
@@ -113,34 +136,14 @@ namespace Bricks.Classes
 
                     field[index_star] = temp;
                 }
+
+                Game.CurrentField.Bricks = null;
+
+                Game.CurrentField.Bricks = new Brick[field.Length];
+
+                for (int i = 0; i < field.Length; i++)
+                    Game.CurrentField.Bricks[i] = new Brick(field[i]);
             }
-            else if ((index_star + 1) % game.CurrentField.Width == 0)
-            {
-                bool b = (index_number == index_star - 1 || index_number == index_star + game.CurrentField.Width || index_number == index_star - game.CurrentField.Width);
-                if (b)
-                {
-                    temp = field[index_number];
-
-                    field[index_number] = field[index_star];
-
-                    field[index_star] = temp;
-                }
-            }
-            else if (index_number == index_star - game.CurrentField.Width || index_number == index_star + game.CurrentField.Width || index_number == index_star - 1 || index_number == index_star + 1)
-            {
-                temp = field[index_number];
-
-                field[index_number] = field[index_star];
-
-                field[index_star] = temp;
-            }
-
-            game.CurrentField.Bricks = null;
-
-            game.CurrentField.Bricks = new Brick [field.Length];
-
-            for (int i = 0; i < field.Length; i++)
-                game.CurrentField.Bricks[i] = new Brick(field[i]); 
         }
     }
 }
