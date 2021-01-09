@@ -155,5 +155,14 @@ namespace Bricks.Classes
                     Game.CurrentField.Bricks[i] = new Brick(field[i]);
             }
         }
+        public Field SaveState()
+        {
+            return new Field { Height = Game.CurrentField.Height, Width = Game.CurrentField.Width, Bricks = Game.CurrentField.Bricks };
+        }
+
+        public void RestoreState(Field field)
+        {
+            Game.CurrentField = field;
+        }
     }
 }

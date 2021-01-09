@@ -45,15 +45,19 @@
   <ItemGroup>
     <Compile Include="Classes\BackToField.cs" />
     <Compile Include="Classes\Brick.cs" />
+    <Compile Include="Classes\CreatorHardMenu.cs" />
     <Compile Include="Classes\Field.cs" />
+    <Compile Include="Classes\GameHistory.cs" />
     <Compile Include="Classes\Game.cs" />
     <Compile Include="Classes\EazyMenu.cs" />
     <Compile Include="Classes\HardMenu.cs" />
     <Compile Include="Classes\InputNumber.cs" />
     <Compile Include="Classes\InputTheLevelOfGame.cs" />
     <Compile Include="Classes\Invoker.cs" />
+    <Compile Include="Classes\СreatorEazyMenu.cs" />
     <Compile Include="Exceptions\NumberException.cs" />
     <Compile Include="Interfaces\ICommand.cs" />
+    <Compile Include="Interfaces\ICreator.cs" />
     <Compile Include="Interfaces\IMenu.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

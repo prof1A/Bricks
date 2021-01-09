@@ -24,6 +24,8 @@ namespace Bricks.Classes
         }
         public void GameProcess()
         {
+            GameHistory gameHistory = new GameHistory();
+
             Console.Write("Input of height:");
 
             int height = Convert.ToInt32(Console.ReadLine());
@@ -144,6 +146,16 @@ namespace Bricks.Classes
                 for (int i = 0; i < field.Length; i++)
                     Game.CurrentField.Bricks[i] = new Brick(field[i]);
             }
+        }
+
+        public Field SaveState()
+        {
+            return new Field { Height = Game.CurrentField.Height, Width = Game.CurrentField.Width, Bricks = Game.CurrentField.Bricks };
+        }
+
+        public void RestoreState(Field field)
+        {
+            Game.CurrentField = field;
         }
     }
 }

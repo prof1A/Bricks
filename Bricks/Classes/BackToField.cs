@@ -12,7 +12,7 @@ namespace Bricks.Classes
 
         public void Execute()
         {
-            throw new NotImplementedException();
+            
         }
 
         public void Undo()
