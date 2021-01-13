@@ -63,7 +63,7 @@ namespace Bricks.Classes
             do
             {
                 try
-                { 
+                {
                     if (menuFunction.Win(game.CurrentField.Bricks))
                     {
                         menuFunction.ShowField(game.CurrentField);
@@ -84,22 +84,59 @@ namespace Bricks.Classes
 
                             menuFunction.ShowField(game.CurrentField);
 
-                            Console.Write("Input of number or save:");
+                            Console.WriteLine("1.Input number");
 
-                            string answer = Console.ReadLine();
+                            Console.WriteLine("2.Save");
 
-                            invoker.SetCommand(new InputNumber(menuFunction,game, answer));
+                            Console.WriteLine("3.Restore");
 
-                            invoker.Run();
+                            Console.Write("Your choice:");
 
-                            repeat++;
+                            int choice = Convert.ToInt32(Console.ReadLine());
 
-                            Console.Clear();
+                            switch (choice)
+                            {
+                                case 1:
+
+                                    Console.Write("Input of number:");
+
+                                    string number = Console.ReadLine();
+
+                                    invoker.SetCommand(new InputNumber(menuFunction, game, number));
+
+                                    invoker.Run();
+
+                                    Console.Clear();
+
+                                    repeat++;
+
+                                    break;
+
+                                case 2:
+
+                                    invoker.SetCommand(new SaveField(menuFunction, game.CurrentField.Bricks));
+
+                                    invoker.Run();
+
+                                    repeat++;
+
+                                    break;
+
+                                case 3:
+
+                                    invoker.SetCommand(new ReturnField(menuFunction, game, game.CurrentField.Bricks));
+
+                                    invoker.Run();
+
+                                    repeat++;
+
+                                    break;
+                            }
+                            break;
                         }
-                        break;
                     }
                 }
-                catch(NumberException ex)
+                catch (NumberException ex)
                 {
                     Console.Clear();
 

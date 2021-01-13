@@ -11,5 +11,9 @@ namespace Bricks.Interfaces
         bool Win(Brick[] bricks);
 
         void InputNumber(Game game, string number);
+
+        void SaveField(Brick[] bricks);
+
+        Brick[] RestoreField(Game game, Brick[] bricks);
     }
 }

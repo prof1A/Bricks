@@ -1,27 +1,27 @@
 ﻿using Bricks.Interfaces;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Bricks.Classes
 {
-    class SaveField : ICommand
+    class ReturnField : ICommand
     {
         IMenuFunction menuFunction;
 
+        Game game;
+
         Brick[] bricks;
 
-        public SaveField(IMenuFunction menuFunction, Brick[]bricks)
+        public ReturnField(IMenuFunction menuFunction, Game game, Brick[] bricks)
         {
             this.menuFunction = menuFunction;
+
+            this.game = game;
 
             this.bricks = bricks;
         }
         public void Execute()
         {
-            menuFunction.SaveField(bricks);
+            menuFunction.RestoreField(game, bricks);
         }
     }
 }

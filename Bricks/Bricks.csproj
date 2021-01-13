@@ -54,6 +54,7 @@
     <Compile Include="Classes\InputTheLevelOfGame.cs" />
     <Compile Include="Classes\Invoker.cs" />
     <Compile Include="Classes\MenuFunction.cs" />
+    <Compile Include="Classes\ReturnField.cs" />
     <Compile Include="Classes\SaveField.cs" />
     <Compile Include="Classes\СreatorEazyMenu.cs" />
     <Compile Include="Exceptions\NumberException.cs" />

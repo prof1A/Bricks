@@ -7,6 +7,8 @@ namespace Bricks.Classes
 {
     class MenuFunction : IMenuFunction
     {
+
+        GameHistory gameHistory = new GameHistory();
         public void ShowField(Field field)
         {
             for (int i = 0; i < field.Bricks.Length; i++)
@@ -143,14 +145,14 @@ namespace Bricks.Classes
                     game.CurrentField.Bricks[i] = new Brick(field[i]);
             }
         }
-        public Field SaveField(Field field)
+        public void SaveField(Brick[] bricks)
         {
-            return field;
+            gameHistory.History.Push(bricks);
         }
-        //public void RestoreField(Game game,Field field)
-        //{
-        //    game.CurrentField = field;
-        //}
+        public Brick[] RestoreField(Game game,Brick[]bricks)
+        {
+            return game.CurrentField.Bricks = gameHistory.History.Pop();
+        }
         static bool Contains(List<int> vs, int value)
         {
             for (int i = 0; i < vs.Count; i++)

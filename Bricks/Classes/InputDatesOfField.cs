@@ -28,10 +28,5 @@ namespace Bricks.Classes
         {
             menuFunction.CreateField(game, height, width);
         }
-
-        public void Undo()
-        {
-            throw new NotImplementedException();
-        }
     }
 }

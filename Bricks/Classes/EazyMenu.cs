@@ -15,7 +15,6 @@ namespace Bricks.Classes
         }
         public void GameProcess()
         {
-            GameHistory gameHistory = new GameHistory();
 
             Invoker invoker = new Invoker();
 
@@ -49,10 +48,15 @@ namespace Bricks.Classes
                             menuFunction.ShowField(game.CurrentField);
 
                             Console.WriteLine("1.Input number");
+
                             Console.WriteLine("2.Save");
+                            
                             Console.WriteLine("3.Restore");
+                            
                             Console.Write("Your choice:");
+
                             int choice = Convert.ToInt32(Console.ReadLine());
+
                             switch (choice)
                             {
                                 case 1:
@@ -60,8 +64,6 @@ namespace Bricks.Classes
                                     Console.Write("Input of number:");
 
                                     string number = Console.ReadLine();
-
-                                    invoker = new Invoker();
 
                                     invoker.SetCommand(new InputNumber(menuFunction, game, number));
 
@@ -73,31 +75,21 @@ namespace Bricks.Classes
 
                                 case 2:
 
-                                    gameHistory.History.Push(game.CurrentField.Bricks);
+                                    invoker.SetCommand(new SaveField(menuFunction, game.CurrentField.Bricks));
+
+                                    invoker.Run();
 
                                     break;
 
                                 case 3:
 
-                                    game.CurrentField.Bricks = gameHistory.History.Pop();
+                                    invoker.SetCommand(new ReturnField(menuFunction, game, game.CurrentField.Bricks));
+
+                                    invoker.Run();
 
                                     break;
                             }
-
-                            //Console.Write("Input of number:");
-
-                            //string number = Console.ReadLine();
-
-                            //invoker = new Invoker();
-
-                            //invoker.SetCommand(new InputNumber(menuFunction,game,number));
-
-                            //invoker.Run();
-
-                            //Console.Clear();
-
                         }
-
                         break;
                     }
                 }

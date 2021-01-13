@@ -17,9 +17,5 @@ namespace Bricks.Classes
         {
             creators[choice - 1].CreateMenu().GameProcess();
         }
-        public void Undo()
-        {
-            throw new NotImplementedException();
-        }
     }
 }

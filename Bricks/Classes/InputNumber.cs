@@ -23,9 +23,5 @@ namespace Bricks.Classes
         {
             menuFuction.InputNumber(game, number);
         }
-        public void Undo()
-        {
-            throw new NotImplementedException();
-        }
     }
 }
