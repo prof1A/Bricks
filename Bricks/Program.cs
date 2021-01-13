@@ -1,5 +1,4 @@
-﻿using Bricks.Classes; 
-using Bricks.Interfaces;
+﻿using Bricks.Classes;
 using System;
 
 namespace Bricks
@@ -11,7 +10,7 @@ namespace Bricks
             Console.WriteLine("Choise level of game");
 
             Console.WriteLine("1.Eazy");
-            
+
             Console.WriteLine("2.Hard");
 
             Console.Write("Your choice:");

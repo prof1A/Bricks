@@ -5,18 +5,18 @@ namespace Bricks.Classes
 {
     class InputNumber : ICommand
     {
-        IMenu menu;
+        MenuFuction menuFuction;
 
         string number;
-        public InputNumber(IMenu menu,string number)
+        public InputNumber(MenuFuction menuFuction, string number)
         {
-            this.menu = menu;
+            this.menuFuction = menuFuction;
 
             this.number = number;
         }
         public void Execute()
         {
-            menu.InputNumber(menu.Game.CurrentField.Bricks, number);
+            menuFuction.InputNumber(menuFuction.Game, number);
         }
         public void Undo()
         {
