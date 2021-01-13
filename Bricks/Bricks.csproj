@@ -55,6 +55,7 @@
     <Compile Include="Classes\MenuFunction.cs" />
     <Compile Include="Classes\СreatorEazyMenu.cs" />
     <Compile Include="Exceptions\NumberException.cs" />
+    <Compile Include="Classes\InputDatesOfField.cs" />
     <Compile Include="Interfaces\ICommand.cs" />
     <Compile Include="Interfaces\ICreator.cs" />
     <Compile Include="Interfaces\IMenu.cs" />

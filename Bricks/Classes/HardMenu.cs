@@ -1,4 +1,5 @@
-﻿using Bricks.Interfaces;
+﻿using Bricks.Exceptions;
+using Bricks.Interfaces;
 using System;
 
 namespace Bricks.Classes
@@ -6,6 +7,7 @@ namespace Bricks.Classes
     class HardMenu : IMenu
     {
         public Game Game { get; set; }
+
         MenuFuction menuFunction = new MenuFuction();
         public HardMenu(Game game)
         {
@@ -65,39 +67,55 @@ namespace Bricks.Classes
 
             Console.Clear();
 
-            if (menuFunction.Win(Game.CurrentField.Bricks))
-                menuFunction.ShowField(Game.CurrentField);
-            else
+            do
             {
-                while (!menuFunction.Win(Game.CurrentField.Bricks))
+                try
                 {
-                    if (repeat == value)
+                    if (menuFunction.Win(Game.CurrentField.Bricks))
                     {
-                        menuFunction.CreateField(Game, height, width);
-
-                        repeat = 0;
-
-                        value = random.Next(1, 10);
+                        menuFunction.ShowField(Game.CurrentField);
+                        break;
                     }
+                    else
+                    {
+                        while (!menuFunction.Win(Game.CurrentField.Bricks))
+                        {
+                            if (repeat == value)
+                            {
+                                menuFunction.CreateField(Game, height, width);
 
-                    ShowField();
+                                repeat = 0;
 
-                    Console.Write("Input of number:");
+                                value = random.Next(1, 10);
+                            }
 
-                    string number = Console.ReadLine();
+                            ShowField();
 
-                    Invoker invoker = new Invoker();
+                            Console.Write("Input of number:");
 
-                    invoker.SetCommand(new InputNumber(menuFunction, number));
+                            string number = Console.ReadLine();
 
-                    invoker.Run();
+                            Invoker invoker = new Invoker();
 
-                    repeat++;
+                            invoker.SetCommand(new InputNumber(menuFunction, number));
 
-                    Console.Clear();
+                            invoker.Run();
+
+                            repeat++;
+
+                            Console.Clear();
+                        }
+                        break;
+                    }
                 }
-            }
-            Console.WriteLine("Победа!");
+                catch(NumberException ex)
+                {
+                    Console.Clear();
+
+                    Console.WriteLine(ex.Message);
+                }
+            } while (true);
+            Console.WriteLine("Победа");
         }
     }
 }

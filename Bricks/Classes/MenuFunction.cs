@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Bricks.Exceptions;
+using System;
 using System.Collections.Generic;
 
 namespace Bricks.Classes
@@ -58,7 +59,7 @@ namespace Bricks.Classes
 
             Field field = new Field { Height = height, Width = width, Bricks = bricks };
 
-            game.CurrentField = field;
+            Game.CurrentField = field;
         }
         public bool Win(Brick[] bricks)
         {
@@ -92,7 +93,7 @@ namespace Bricks.Classes
 
             if (!Array.Exists(field, v => v == number))
             {
-
+                throw new NumberException("Неправильное число");
             }
             else
             {
