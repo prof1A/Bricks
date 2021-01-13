@@ -1,6 +1,4 @@
-﻿using Bricks.Classes;
-
-namespace Bricks.Interfaces
+﻿namespace Bricks.Interfaces
 {
     interface IMenu
     {

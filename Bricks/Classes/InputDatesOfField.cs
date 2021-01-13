@@ -1,23 +1,32 @@
-﻿using Bricks.Interfaces;
-using System;
+﻿using System;
+using Bricks.Interfaces;
 
 namespace Bricks.Classes
 {
     class InputDatesOfField : ICommand
     {
-        MenuFuction menuFuction;
+        IMenuFunction menuFunction;
+
+        Game game;
+
         int height;
+
         int width;
-        public InputDatesOfField(MenuFuction menuFuction,int height,int width)
+
+        public InputDatesOfField(IMenuFunction menuFunction,Game game,int height,int width)
         {
-            this.menuFuction = menuFuction;
+            this.menuFunction = menuFunction;
+
+            this.game = game;
+
             this.height = height;
+
             this.width = width;
         }
 
         public void Execute()
         {
-            menuFuction.CreateField(new Game(), height, width);
+            menuFunction.CreateField(game, height, width);
         }
 
         public void Undo()

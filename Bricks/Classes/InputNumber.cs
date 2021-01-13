@@ -1,22 +1,27 @@
-﻿using Bricks.Interfaces;
-using System;
+﻿using System;
+using Bricks.Interfaces;
 
 namespace Bricks.Classes
 {
     class InputNumber : ICommand
     {
-        MenuFuction menuFuction;
+        IMenuFunction menuFuction;
+
+        Game game;
 
         string number;
-        public InputNumber(MenuFuction menuFuction, string number)
+
+        public InputNumber(IMenuFunction menuFuction,Game game, string number)
         {
             this.menuFuction = menuFuction;
+
+            this.game = game;
 
             this.number = number;
         }
         public void Execute()
         {
-            menuFuction.InputNumber(menuFuction.Game, number);
+            menuFuction.InputNumber(game, number);
         }
         public void Undo()
         {

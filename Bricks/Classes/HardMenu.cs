@@ -1,30 +1,20 @@
-﻿using Bricks.Exceptions;
+﻿using System;
+using Bricks.Exceptions;
 using Bricks.Interfaces;
-using System;
 
 namespace Bricks.Classes
 {
     class HardMenu : IMenu
     {
-        public Game Game { get; set; }
+        Game game;
 
-        MenuFuction menuFunction = new MenuFuction();
+        IMenuFunction menuFunction = new MenuFunction();
+
         public HardMenu(Game game)
         {
-            Game = game;
+            this.game = game;
         }
 
-        void ShowField()
-        {
-            for (int i = 0; i < Game.CurrentField.Bricks.Length; i++)
-            {
-                if (i % Game.CurrentField.Width == 0 & i != 0)
-                    Console.WriteLine();
-
-                Console.Write(Game.CurrentField.Bricks[i] + " ");
-            }
-            Console.WriteLine("\n\n");
-        }
         bool Win(Brick[] bricks)
         {
             int number = 0;
@@ -48,6 +38,7 @@ namespace Bricks.Classes
         }
         public void GameProcess()
         {
+            Invoker invoker = new Invoker();
 
             Random random = new Random();
 
@@ -63,41 +54,41 @@ namespace Bricks.Classes
 
             int width = Convert.ToInt32(Console.ReadLine());
 
-            menuFunction.CreateField(Game, height, width);
+            invoker.SetCommand(new InputDatesOfField(menuFunction, game, height, width));
+
+            invoker.Run();
 
             Console.Clear();
 
             do
             {
                 try
-                {
-                    if (menuFunction.Win(Game.CurrentField.Bricks))
+                { 
+                    if (menuFunction.Win(game.CurrentField.Bricks))
                     {
-                        menuFunction.ShowField(Game.CurrentField);
+                        menuFunction.ShowField(game.CurrentField);
                         break;
                     }
                     else
                     {
-                        while (!menuFunction.Win(Game.CurrentField.Bricks))
+                        while (!menuFunction.Win(game.CurrentField.Bricks))
                         {
                             if (repeat == value)
                             {
-                                menuFunction.CreateField(Game, height, width);
+                                menuFunction.CreateField(game, height, width);
 
                                 repeat = 0;
 
                                 value = random.Next(1, 10);
                             }
 
-                            ShowField();
+                            menuFunction.ShowField(game.CurrentField);
 
-                            Console.Write("Input of number:");
+                            Console.Write("Input of number or save:");
 
-                            string number = Console.ReadLine();
+                            string answer = Console.ReadLine();
 
-                            Invoker invoker = new Invoker();
-
-                            invoker.SetCommand(new InputNumber(menuFunction, number));
+                            invoker.SetCommand(new InputNumber(menuFunction,game, answer));
 
                             invoker.Run();
 
@@ -115,6 +106,7 @@ namespace Bricks.Classes
                     Console.WriteLine(ex.Message);
                 }
             } while (true);
+
             Console.WriteLine("Победа");
         }
     }

@@ -1,5 +1,4 @@
-﻿
-namespace Bricks.Interfaces
+﻿namespace Bricks.Interfaces
 {
     interface ICreator
     {

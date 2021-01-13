@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-
-namespace Bricks.Classes
+﻿namespace Bricks.Classes
 {
     class Game
     {

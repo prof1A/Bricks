@@ -1,5 +1,5 @@
-﻿using Bricks.Interfaces;
-using System;
+﻿using System;
+using Bricks.Interfaces;
 
 namespace Bricks.Classes
 {

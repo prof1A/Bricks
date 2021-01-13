@@ -1,12 +1,12 @@
-﻿using Bricks.Exceptions;
-using System;
+﻿using System;
 using System.Collections.Generic;
+using Bricks.Exceptions;
+using Bricks.Interfaces;
 
 namespace Bricks.Classes
 {
-    class MenuFuction
+    class MenuFunction : IMenuFunction
     {
-        public Game Game { get; set; }
         public void ShowField(Field field)
         {
             for (int i = 0; i < field.Bricks.Length; i++)
@@ -19,7 +19,6 @@ namespace Bricks.Classes
         }
         public void CreateField(Game game, int height, int width)
         {
-            Game = game;
 
             Random random = new Random();
 
@@ -59,7 +58,7 @@ namespace Bricks.Classes
 
             Field field = new Field { Height = height, Width = width, Bricks = bricks };
 
-            Game.CurrentField = field;
+            game.CurrentField = field;
         }
         public bool Win(Brick[] bricks)
         {
@@ -144,6 +143,14 @@ namespace Bricks.Classes
                     game.CurrentField.Bricks[i] = new Brick(field[i]);
             }
         }
+        public Field SaveField(Field field)
+        {
+            return field;
+        }
+        //public void RestoreField(Game game,Field field)
+        //{
+        //    game.CurrentField = field;
+        //}
         static bool Contains(List<int> vs, int value)
         {
             for (int i = 0; i < vs.Count; i++)

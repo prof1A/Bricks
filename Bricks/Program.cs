@@ -1,5 +1,5 @@
-﻿using Bricks.Classes;
-using System;
+﻿using System;
+using Bricks.Classes;
 
 namespace Bricks
 {
@@ -7,7 +7,7 @@ namespace Bricks
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Choise level of game");
+            Console.WriteLine("Choise the level of game");
 
             Console.WriteLine("1.Eazy");
 
