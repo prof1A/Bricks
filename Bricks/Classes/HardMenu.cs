@@ -67,6 +67,7 @@ namespace Bricks.Classes
                     if (menuFunction.Win(game.CurrentField.Bricks))
                     {
                         menuFunction.ShowField(game.CurrentField);
+
                         break;
                     }
                     else

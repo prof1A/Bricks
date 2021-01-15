@@ -5,7 +5,7 @@ using Bricks.Interfaces;
 
 namespace Bricks.Classes
 {
-    class MenuFunction : IMenuFunction
+    public class MenuFunction : IMenuFunction
     {
 
         GameHistory gameHistory = new GameHistory();
@@ -15,7 +15,8 @@ namespace Bricks.Classes
             {
                 if (i % field.Width == 0 & i != 0)
                     Console.WriteLine();
-                Console.Write(field.Bricks[i] + " ");
+
+                Console.Write(field.Bricks[i] + "\t");
             }
             Console.WriteLine("\n\n");
         }
@@ -153,7 +154,7 @@ namespace Bricks.Classes
         {
             return game.CurrentField.Bricks = gameHistory.History.Pop();
         }
-        static bool Contains(List<int> vs, int value)
+        public bool Contains(List<int> vs, int value)
         {
             for (int i = 0; i < vs.Count; i++)
             {

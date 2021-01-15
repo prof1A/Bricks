@@ -5,6 +5,8 @@ VisualStudioVersion = 16.0.30717.126
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bricks", "Bricks\Bricks.csproj", "{1420D3ED-9C40-4959-B8B7-7530B8808B83}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BricksTests", "BricksTests\BricksTests.csproj", "{4DC8DEB5-E99E-4CDC-AAF8-D48F38392D62}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{1420D3ED-9C40-4959-B8B7-7530B8808B83}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1420D3ED-9C40-4959-B8B7-7530B8808B83}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1420D3ED-9C40-4959-B8B7-7530B8808B83}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4DC8DEB5-E99E-4CDC-AAF8-D48F38392D62}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4DC8DEB5-E99E-4CDC-AAF8-D48F38392D62}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4DC8DEB5-E99E-4CDC-AAF8-D48F38392D62}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4DC8DEB5-E99E-4CDC-AAF8-D48F38392D62}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

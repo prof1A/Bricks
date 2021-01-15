@@ -1,6 +1,6 @@
 ﻿namespace Bricks.Classes
 {
-    class Brick
+    public class Brick
     {
         public string Symbol { get; set; }
         public Brick(string symbol)

@@ -1,6 +1,6 @@
 ﻿namespace Bricks.Classes
 {
-    class Game
+    public class Game
     {
         public Field CurrentField { get; set; }
     }

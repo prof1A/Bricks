@@ -1,7 +1,7 @@
 ﻿using System;
 using Bricks.Classes;
 
-namespace Bricks
+namespace Bricks.Classes
 {
     class Program
     {
