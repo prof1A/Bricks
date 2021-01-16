@@ -4,11 +4,11 @@ namespace Bricks.Classes
 {
     class InputNumber : ICommand
     {
-        IMenuFunction menuFuction;
+        readonly IMenuFunction menuFuction;
 
-        Game game;
+        readonly Game game;
 
-        string number;
+        readonly string number;
 
         public InputNumber(IMenuFunction menuFuction,Game game, string number)
         {

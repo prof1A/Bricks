@@ -4,13 +4,13 @@ namespace Bricks.Classes
 {
     class InputDatesOfField : ICommand
     {
-        IMenuFunction menuFunction;
+        readonly IMenuFunction menuFunction;
 
-        Game game;
+        readonly Game game;
 
-        int height;
+        readonly int height;
 
-        int width;
+        readonly int width;
 
         public InputDatesOfField(IMenuFunction menuFunction,Game game,int height,int width)
         {

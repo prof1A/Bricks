@@ -6,7 +6,7 @@ namespace Bricks.Classes
 {
     class HardMenu : IMenu
     {
-        Game game;
+        readonly Game game;
 
         IMenuFunction menuFunction = new MenuFunction();
 

@@ -4,11 +4,11 @@ namespace Bricks.Classes
 {
     class ReturnField : ICommand
     {
-        IMenuFunction menuFunction;
+        readonly IMenuFunction menuFunction;
 
-        Game game;
+        readonly Game game;
 
-        Brick[] bricks;
+        readonly Brick[] bricks;
 
         public ReturnField(IMenuFunction menuFunction, Game game, Brick[] bricks)
         {

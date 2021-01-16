@@ -6,7 +6,7 @@ namespace Bricks.Classes
 {
     class EazyMenu : IMenu
     {
-        Game game;
+        readonly Game game;
 
         IMenuFunction menuFunction = new MenuFunction();
         public EazyMenu(Game game)

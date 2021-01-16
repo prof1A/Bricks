@@ -6,7 +6,7 @@ namespace Bricks.Classes
     {
         ICreator[] creators = new ICreator[] { new СreatorEazyMenu(), new CreatorHardMenu() };
 
-        int choice;
+        readonly int choice;
 
         public InputTheLevelOfGame(int choice)
         {

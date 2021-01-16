@@ -4,9 +4,9 @@ namespace Bricks.Classes
 {
     class SaveField : ICommand
     {
-        IMenuFunction menuFunction;
+        readonly IMenuFunction menuFunction;
 
-        Brick[] bricks;
+        readonly Brick[] bricks;
 
         public SaveField(IMenuFunction menuFunction, Brick[]bricks)
         {
