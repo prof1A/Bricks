@@ -10,7 +10,7 @@ namespace Bricks.Classes
 
         readonly string number;
 
-        public InputNumber(IMenuFunction menuFuction,Game game, string number)
+        public InputNumber(IMenuFunction menuFuction, Game game, string number)
         {
             this.menuFuction = menuFuction;
 

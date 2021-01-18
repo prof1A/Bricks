@@ -8,7 +8,7 @@ namespace Bricks.Classes
 
         readonly Brick[] bricks;
 
-        public SaveField(IMenuFunction menuFunction, Brick[]bricks)
+        public SaveField(IMenuFunction menuFunction, Brick[] bricks)
         {
             this.menuFunction = menuFunction;
 

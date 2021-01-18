@@ -12,7 +12,7 @@ namespace Bricks.Classes
 
         readonly int width;
 
-        public InputDatesOfField(IMenuFunction menuFunction,Game game,int height,int width)
+        public InputDatesOfField(IMenuFunction menuFunction, Game game, int height, int width)
         {
             this.menuFunction = menuFunction;
 

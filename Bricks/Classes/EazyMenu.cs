@@ -1,6 +1,6 @@
-﻿using System;
-using Bricks.Exceptions;
+﻿using Bricks.Exceptions;
 using Bricks.Interfaces;
+using System;
 
 namespace Bricks.Classes
 {
@@ -26,7 +26,7 @@ namespace Bricks.Classes
 
             int width = Convert.ToInt32(Console.ReadLine());
 
-            invoker.SetCommand(new InputDatesOfField(menuFunction, game, height,width));
+            invoker.SetCommand(new InputDatesOfField(menuFunction, game, height, width));
 
             invoker.Run();
 
@@ -50,9 +50,9 @@ namespace Bricks.Classes
                             Console.WriteLine("1.Input number");
 
                             Console.WriteLine("2.Save");
-                            
+
                             Console.WriteLine("3.Restore");
-                            
+
                             Console.Write("Your choice:");
 
                             int choice = Convert.ToInt32(Console.ReadLine());
@@ -100,7 +100,7 @@ namespace Bricks.Classes
                     Console.WriteLine(ex.Message);
 
                 }
-            }while (true);
+            } while (true);
 
             Console.WriteLine("Победа");
         }
