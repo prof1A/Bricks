@@ -1,6 +1,6 @@
-﻿using System;
-using Bricks.Exceptions;
+﻿using Bricks.Exceptions;
 using Bricks.Interfaces;
+using System;
 
 namespace Bricks.Classes
 {
@@ -15,27 +15,6 @@ namespace Bricks.Classes
             this.game = game;
         }
 
-        bool Win(Brick[] bricks)
-        {
-            int number = 0;
-
-            string[] new_field = new string[bricks.Length - 1];
-
-            for (int i = 0; i < new_field.Length; i++)
-            {
-                number++;
-
-                new_field[i] = Convert.ToString(number);
-            }
-
-            for (int i = 0; i < new_field.Length; i++)
-            {
-                if (bricks[i].Symbol != new_field[i])
-                    return false;
-            }
-
-            return true;
-        }
         public void GameProcess()
         {
             Invoker invoker = new Invoker();
@@ -60,7 +39,7 @@ namespace Bricks.Classes
 
             Console.Clear();
 
-            do
+            while (true)
             {
                 try
                 {
@@ -70,71 +49,59 @@ namespace Bricks.Classes
 
                         break;
                     }
-                    else
+                    while (!menuFunction.Win(game.CurrentField.Bricks))
                     {
-                        while (!menuFunction.Win(game.CurrentField.Bricks))
+                        if (repeat == value)
                         {
-                            if (repeat == value)
-                            {
-                                menuFunction.CreateField(game, height, width);
+                            menuFunction.CreateField(game, height, width);
 
-                                repeat = 0;
+                            repeat = 0;
 
-                                value = random.Next(1, 10);
-                            }
-
-                            menuFunction.ShowField(game.CurrentField);
-
-                            Console.WriteLine("1.Input number");
-
-                            Console.WriteLine("2.Save");
-
-                            Console.WriteLine("3.Restore");
-
-                            Console.Write("Your choice:");
-
-                            int choice = Convert.ToInt32(Console.ReadLine());
-
-                            switch (choice)
-                            {
-                                case 1:
-
-                                    Console.Write("Input of number:");
-
-                                    string number = Console.ReadLine();
-
-                                    invoker.SetCommand(new InputNumber(menuFunction, game, number));
-
-                                    invoker.Run();
-
-                                    Console.Clear();
-
-                                    repeat++;
-
-                                    break;
-
-                                case 2:
-
-                                    invoker.SetCommand(new SaveField(menuFunction, game.CurrentField.Bricks));
-
-                                    invoker.Run();
-
-                                    repeat++;
-
-                                    break;
-
-                                case 3:
-
-                                    invoker.SetCommand(new ReturnField(menuFunction, game, game.CurrentField.Bricks));
-
-                                    invoker.Run();
-
-                                    repeat++;
-
-                                    break;
-                            }
-                            break;
+                            value = random.Next(1, 10);
                         }
+
+                        menuFunction.ShowField(game.CurrentField);
+
+                        Console.WriteLine("1.Input number");
+
+                        Console.WriteLine("2.Save");
+
+                        Console.WriteLine("3.Restore");
+
+                        Console.Write("Your choice:");
+
+                        int choice = Convert.ToInt32(Console.ReadLine());
+
+                        switch (choice)
+                        {
+                            case 1:
+
+                                Console.Write("Input of number:");
+
+                                string number = Console.ReadLine();
+
+                                invoker.SetCommand(new InputNumber(menuFunction, game, number));
+
+                                Console.Clear();
+
+                                break;
+
+                            case 2:
+
+                                invoker.SetCommand(new SaveField(menuFunction, game.CurrentField.Bricks));
+
+                                break;
+
+                            case 3:
+
+                                invoker.SetCommand(new ReturnField(menuFunction, game, game.CurrentField.Bricks));
+
+                                break;
+                        }
+
+                        invoker.Run();
+                        repeat++;
+                        break;
                     }
                 }
                 catch (NumberException ex)
@@ -143,7 +110,7 @@ namespace Bricks.Classes
 
                     Console.WriteLine(ex.Message);
                 }
-            } while (true);
+            } 
 
             Console.WriteLine("Победа");
         }
