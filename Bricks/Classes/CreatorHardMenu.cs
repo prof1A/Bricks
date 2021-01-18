@@ -1,4 +1,9 @@
-﻿using Bricks.Interfaces;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using Bricks.Interfaces;
 
 namespace Bricks.Classes
 {
@@ -6,7 +11,7 @@ namespace Bricks.Classes
     {
         public IMenu CreateMenu()
         {
-            return new HardMenu(new Game());
+            return new EazyMenu(new Game());
         }
     }
 }
